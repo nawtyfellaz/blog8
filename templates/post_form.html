@@ -1,0 +1,32 @@
+{% extends "blog/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block head_extra %} 
+{{ form.media }}
+{% endblock head_extra %}
+
+
+
+{% block content %}
+<div class='post'>
+    <header>
+        <div class="title">
+            <h2>CREATE POST</h2>
+        </div>
+        <div class='content-preview'>
+            <h3 id='preview-title'></h3>
+            <p id='preview-content'></p>
+        </div>
+    </header>
+
+    <div class='published'>
+    <h1>POST CREATE FORM</h1>
+    <hr/>
+
+        <form method='POST' action='' enctype='multipart/form-data'>{% csrf_token %}
+        {{ form|crispy }}
+        <input type='submit' class='button big fit' value='Create Post' />
+        </form>
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,231 @@
+{% load staticfiles %}
+<!--DOCTYPE html -->
+<html lang="en-us">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Team JELOBLIS">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="keywords" content="Entertainment blog, education news, scholarships in nigeria, jamb, waec, neco, post utme, nigeria lifestyle, nigeria politics, politics, lifestyle, jamb results, neco results, waec results, nigeria universities cut off mark," />
+    
+    <title>BLOG8 {% block head_title %}{% endblock head_title %}</title>
+
+    <!--Main Cascading Style Sheet-->
+    <link rel='stylesheet' href='{% static "css/base.css" %}' />
+    
+      
+    <!--[if lt IE 9 ]>
+        <script type="text/javascript" src="https://codropspz-tympanus.netdna-ssl.com/codrops/wp-content/themes/codropstheme03/js/css3-mediaqueries.js"></script>
+        <link rel="stylesheet" href="https://codropspz-tympanus.netdna-ssl.com/codrops/wp-content/themes/codropstheme03/css/ie.css"/>
+    <![endif]-->
+    <!--[if lt IE 8 ]>
+        <script type="text/javascript" src="https://codropspz-tympanus.netdna-ssl.com/codrops/wp-content/themes/codropstheme03/js/iconfonts.js"></script>
+    <![endif]-->
+    <!--[if lte IE 9]><link rel="stylesheet" href='{% static "css/ie9.css" %}' /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href='{% static "css/ie8.css" %}' /><![endif]-->
+    <meta name="description" content="Tech News, Tutorials and Reviews."/>
+
+    {% block head_extra %} {% endblock head_extra %}
+</head>
+<body>
+    <script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
+    fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+    
+    {% if messages %}
+        <div class='messages'>
+
+        <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{% if "html_safe" in message.tags %}{{ message|safe }}{% else %}{{ message }}{% endif %}</li>
+        {% endfor %}
+        </ul>
+
+        </div>
+    {% endif %}
+    
+
+    <div id="wrapper">
+        
+        <!-- Header -->
+        <header id="header">
+            <h1><a href='{% url "posts:list" %}'>BLOG8</a></h1>
+            
+            <nav class="main">
+                <ul>
+                    <li class="search">
+                        <a class="fa-search" href="#search">Search</a>
+                        <form id="search" method="get" action="">
+                            <input type='text' name='q' placeholder='Search posts' value='{{ request.GET.q }}'/>
+                        </form>
+                    </li>
+                    <li class="menu">
+                        <a class="fa-bars" href="#menu">Menu</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+
+        <!--Side Navigation With Login/Register Form-->
+        {% include "sidenav.html" %}
+
+        <!--Main Content-->
+        <div id="main">
+            {% block content %}{% endblock content %}
+        </div>
+
+        <!-- Sidebar -->
+        <section id="sidebar">
+
+            <!-- Intro -->
+                <section id="intro">
+                    <a href="#" class="logo"><img src="images/logo.jpg" alt="" /></a>
+                    <header>
+                        <h2>BLOG 8</h2>
+                        <p>Django News, Updates and How-To</a></p>
+                    </header>
+                </section>
+
+            {% block minipost %}
+            
+            {% endblock minipost %}
+
+            {% block postlist %}
+            
+            {% endblock postlist %}
+
+            <!-- About -->
+                <section class="blurb">
+                    <h2>About</h2>
+                    <p>Mauris neque quam, fermentum ut nisl vitae, convallis maximus nisl. Sed mattis nunc id lorem euismod amet placerat. Vivamus porttitor magna enim, ac accumsan tortor cursus at phasellus sed ultricies.</p>
+                    <ul class="actions">
+                        <li><a href="#" class="button">Learn More</a></li>
+                    </ul>
+                </section>
+
+            <!-- Footer -->
+                <section id="footer">
+                    <ul class="icons">
+                        <li><a href="#" class="fa-twitter"><span class="label">Twitter</span></a></li>
+                        <li><a href="#" class="fa-facebook"><span class="label">Facebook</span></a></li>
+                        <li><a href="#" class="fa-instagram"><span class="label">Instagram</span></a></li>
+                        <li><a href="#" class="fa-rss"><span class="label">RSS</span></a></li>
+                        <li><a href="#" class="fa-envelope"><span class="label">Email</span></a></li>
+                    </ul>
+                    <p class="copyright">&copy; Untitled. Crafted: <a href="http://designscrazed.org/">HTML5</a>.</p>
+                </section>
+
+        </section>
+
+    </div><!--end wrapper-->
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src='{% static "js/jquery.min.js" %}'></script>
+    <!--[if lte IE 8]><script src="{% static "js/respond.min.js" %}"></script><![endif]-->
+    <script src='{% static "js/skel.min.js" %}'></script>
+    <script src='{% static "js/util.js" %}'></script>
+    <script src='{% static "js/base.js" %}'></script>
+
+    <script>
+        $(document).ready(function(){
+             function updateText(btn, newCount){
+             btn.text(newCount)
+         }
+         $(".like-btn").click(function(e){
+           e.preventDefault()
+           var this_ = $(this)
+           var likeUrl = this_.attr("data-href")
+           var likeCount = parseInt(this_.attr("data-likes")) | 0
+           var addLike = likeCount + 1
+           var removeLike = likeCount - 1
+           if (likeUrl){
+              $.ajax({
+               url: likeUrl,
+               method: "GET",
+               data: {},
+               success: function(data){
+                 console.log(data)
+                 var newLikes;
+                 if (data.liked){
+                     updateText(this_, addLike,)
+                 } else {
+                     updateText(this_, removeLike,)
+                     // remove one like
+                 }
+               }, error: function(error){
+                 console.log(error)
+                 console.log("error")
+               }
+             })
+           }
+          
+         })
+     })
+    </script>
+
+    <script type="text/javascript">
+    $(document).ready(function(){
+        $(".content-markdown").each(function(){
+                var content = $(this).text()
+                var markedContent = marked(content)
+                $(this).html(markedContent)
+        })
+        $(".post-detail-item img").each(function(){
+                $(this).addClass("img-responsive");
+        })
+
+        
+
+        var contentInput = $("#id_content");
+
+        function setContent(value){
+            var markedContent = marked(value)
+            $("#preview-content").html(markedContent)
+            $("#preview-content img").each(function(){
+                $(this).addClass("img-responsive")
+            })
+        }
+        setContent(contentInput.val())
+
+        contentInput.keyup(function(){
+            var newContent = $(this).val()
+            setContent(newContent)
+        })
+
+        var titleInput = $("#id_title");
+        
+
+
+        function setTitle(value) {
+            $("#preview-title").text(value)
+        }
+        setTitle(titleInput.val())
+
+        titleInput.keyup(function(){
+            var newContent = $(this).val()
+            setTitle(newContent)
+        })
+
+        $(".comment-reply-btn").click(function(event){
+            event.preventDefault();
+            $(this).parent().next(".comment-reply").fadeToggle();
+        })
+
+
+        // preview-title
+        // preview-content
+
+    })
+
+    </script>
+
+    </body>
+</html>
+
+
+
+

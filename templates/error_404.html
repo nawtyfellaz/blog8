@@ -1,0 +1,66 @@
+{% extends "blog/base.html" %}
+{% load staticfiles %}
+
+
+{% block content %}
+<div class="agile">
+    <div class="agileits_main_grid">
+        <div class="agileits_main_grid_left">
+            
+            <div class="w3l">
+                <div class="text">
+                    <h1>BLOG*</h1>
+                    <h3>404</h3>
+                    <h2>SORRY THE PAGE YOU ARE LOOKING FOR DOES NOT EXIST.</h2>	
+                    <div class="wthree">
+                        <div class="back">
+                            <a href='{% url "posts:list" %}'>RETURN HOME</a>
+                        </div>
+                        <div class="social-icons w3agile">
+                            <ul>
+                                <li><a href="#" class="fa-facebook"></a></li>
+                                <li><a href="#" class="fa-twitter"></a></li>
+                                <li><a href="#" class="fa-googleplus"></a></li>
+                                <div class="clear"></div>
+                            </ul>	
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="w3ls_form">
+                    
+                    <h5>STAY TUNED AND DON'T FORGET SIGN UP FOR LATEST UPDATES</h5>
+                        <form action="#" method="post">
+                            <input type="text" name="Keyword" placeholder="Enter your email here..." required="">
+                            <input type="submit" value="Subscribe">
+                            <div class="clear"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        <div class="agileits_main_grid_right">
+            <div class="menu">
+                <span class="fa-menu"><a href="#"></a></span>	
+                    <ul class="nav1">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Services</a></li>
+                        <li><a href="#">Gallery</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul> 	
+                    <!-- script-for-menu -->
+                     <script>
+                       $( "span.menu-icon" ).click(function() {
+                         $( "ul.nav1" ).slideToggle( 300, function() {
+                         // Animation complete.
+                          });
+                         });
+                    </script>
+                    <!-- /script-for-menu -->
+            </div>
+        </div>
+        <div class="clear"> </div>
+    </div>
+</div>
+{% endblock content %}

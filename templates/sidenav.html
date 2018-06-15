@@ -1,0 +1,33 @@
+<!-- Menu -->
+<section id="menu">
+
+    <!-- Search -->
+        <section>
+            <form id="search" method="get" action="">
+                <input type='text' name='q' placeholder='Search posts' value='{{ request.GET.q }}'/>
+            </form>
+        </section>
+
+    <!-- Links -->
+        <section>
+            <ul class="links">
+                <li><a href='{% url "posts:list" %}'>Home</a></li>
+                <li><a href='{% url "contact:contact" %}'>Contact</a></li>
+                {% block post_detail_link %}
+                {% endblock %}
+            </ul>
+        </section>
+
+    <!-- Actions -->
+        <section>
+            <ul class="actions vertical">
+                {% if not request.user.is_authenticated %}
+                <li class='button big fit'><a href='{% url "register" %}'>Register</a></li>
+                <li class='button big fit'><a href='{% url "login" %}'>Login</a></li>
+                {% else %}
+                <li class='button big fit'><a href='{% url "logout" %}'>Logout</a></li>
+                {% endif %}
+            </ul>
+        </section>
+
+</section>
